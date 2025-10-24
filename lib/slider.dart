@@ -53,23 +53,31 @@ class _MyAppState extends State<MyApp> {
           child: Stack( //Created a stack widget that will correspond to the
             alignment: Alignment.center,
             children: <Widget>[
-              Image.asset(
-                _imageLists[_currentSliderVal.round()],
-                fit: BoxFit.cover,
+              Positioned(
+                top:200,
+                child: Image.asset(
+                  _imageLists[_currentSliderVal.round()],
+                  fit: BoxFit.cover,
+                  height: 250,
+          ),
+        ),
+              Positioned(
+                bottom:225,
+                left: 20,
+                right: 20,
+                child: Slider(
+                  value: _currentSliderVal,
+                  min: 0,
+                  max: 4,
+                  divisions: 4,
+                  label: _sliderLabels[_currentSliderVal.round()],
+                  onChanged: (double value) {
+                    setState(() {
+                      _currentSliderVal = value;
+                    });
+                  },
+                ),
               ),
-
-              Slider(
-                value: _currentSliderVal,
-                min: 0,
-                max: 4,
-                divisions: 4,
-                label: _sliderLabels[_currentSliderVal.round()],
-                onChanged: (double value) {
-                  setState(() {
-                    _currentSliderVal = value;
-                  });
-                },
-              )
             ]
           )
         )
